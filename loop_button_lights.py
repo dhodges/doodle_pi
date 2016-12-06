@@ -3,34 +3,34 @@
 import RPi.GPIO as gpio
 import time
 
-button_state = 0
+BUTTON_STATE = 0
 
-laser_pin    =  3
-led_pin      = 21
-button_pin   = 11
+LASER        =  3
+LED          = 21
+BUTTON       = 11
 
 gpio.setmode(gpio.BOARD)
 
-gpio.setup(laser_pin,  gpio.OUT)
-gpio.setup(led_pin,    gpio.OUT)
-gpio.setup(button_pin, gpio.IN)
+gpio.setup(LASER,  gpio.OUT)
+gpio.setup(LED,    gpio.OUT)
+gpio.setup(BUTTON, gpio.IN)
 
 # ------------------------------------
 
 def laser_on():
-  gpio.output(laser_pin, gpio.LOW)
+  gpio.output(LASER, gpio.LOW)
 
 def laser_off():
-  gpio.output(laser_pin, gpio.HIGH)
+  gpio.output(LASER, gpio.HIGH)
 
 def led_on():
-  gpio.output(led_pin, gpio.LOW)
+  gpio.output(LED, gpio.LOW)
 
 def led_off():
-  gpio.output(led_pin, gpio.HIGH)
+  gpio.output(LED, gpio.HIGH)
 
 def print_button_state():
-  if button_state == 0:
+  if BUTTON_STATE == 0:
     print('Button Pressed Off')
   else:
     print('Button Pressed On')
@@ -45,13 +45,13 @@ def init():
 init()
 
 while True:
-  input = gpio.input(button_pin)
-  if input == button_state:
+  input = gpio.input(BUTTON)
+  if input == BUTTON_STATE:
     continue
 
-  button_state = input
+  BUTTON_STATE = input
 
-  if button_state == 0:
+  if BUTTON_STATE == 0:
     laser_off()
     led_on()
   else:
