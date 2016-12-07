@@ -9,8 +9,8 @@ seed()
 
 BUTTON_STATE = 0
 
-LED       = 3
-LASER     = 5
+LASER     = 3
+LED       = 5
 BUTTON    = 7
 
 MESSAGE   = "Resistance is futile. Have a nice day."
