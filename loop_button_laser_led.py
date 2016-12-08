@@ -25,6 +25,18 @@ gpio.setup(BUTTON, gpio.IN)
 
 # ------------------------------------
 
+import logging
+import logging.handlers
+
+LOGGER = logging.getLogger('MyLogger')
+LOGGER.setLevel(logging.DEBUG)
+
+handler = logging.handlers.SysLogHandler(address = '/dev/log')
+
+LOGGER.addHandler(handler)
+
+# ------------------------------------
+
 def laser_on():
   global LASER
   gpio.output(LASER, gpio.LOW)
@@ -63,10 +75,13 @@ def toggle_laser():
 
 def print_button_state():
   global BUTTON_STATE
+  global LOGGER
   if BUTTON_STATE == 0:
     print('Button Pressed Off')
+    LOGGER.debug('Button Pressed Off')
   else:
     print('Button Pressed On')
+    LOGGER.debug('Button Pressed On')
 
 
 def init():
